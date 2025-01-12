@@ -12,9 +12,9 @@ app.use(express.json()); // Permite lidar com JSON no corpo da requisição
 
 // Endpoint para enviar SMS
 app.post('/send-sms', async (req, res) => {
-  const apiUrl = process.env.SMS_API_URL; // URL da API via variável de ambiente
+  const apiUrl = process.env.SMS_API_URL || 'http://api.mozesms.com/bulk_json/v2/'; // URL da API via variável de ambiente
   const token = process.env.SMS_API_TOKEN; // Token via variável de ambiente
-  const sender = process.env.SMS_SENDER_ID; // ID do remetente via variável de ambiente
+  const sender = process.env.SMS_SENDER_ID || 'AGVIAGEM'; // ID do remetente via variável de ambiente
 
   // Verificar se o corpo da requisição contém mensagens
   const { messages } = req.body;
